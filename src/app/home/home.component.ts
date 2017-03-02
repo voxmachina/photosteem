@@ -75,14 +75,20 @@ export class HomeComponent implements OnInit {
     }
 
     this.posts = this.posts.filter(post => post.imageUrls);
-
     this.posts.map(this.getAuthorDetails.bind(this));
 
-    this.loadingMore = false;
+    this.onPostsUpdate();
+  }
 
-    setTimeout(() => {
-      document.documentElement.scrollTop = document.body.scrollTop = this.scrollPosition;
-    });
+  /**
+   * When posts data is updated
+   *
+   * @private
+   * @returns void
+   */
+  private onPostsUpdate(): void {
+    this.loadingMore = false;
+    document.documentElement.scrollTop = document.body.scrollTop = this.scrollPosition;
   }
 
   /**
