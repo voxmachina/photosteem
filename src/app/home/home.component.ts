@@ -51,6 +51,8 @@ export class HomeComponent implements OnInit {
    * @returns void
    */
   public loadMore(): void {
+    if (this.loadingMore) return;
+
     this.loadingMore = true;
     this.steemService
       .nextPage()
@@ -88,7 +90,7 @@ export class HomeComponent implements OnInit {
    */
   private onPostsUpdate(): void {
     this.loadingMore = false;
-    document.documentElement.scrollTop = document.body.scrollTop = this.scrollPosition;
+    setTimeout(() => document.documentElement.scrollTop = document.body.scrollTop = this.scrollPosition, 0);
   }
 
   /**
