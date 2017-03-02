@@ -17,8 +17,19 @@ export class HomeComponent implements OnInit {
    */
   public posts: Array<Post>;
 
+  /**
+   * Current scroll position
+   *
+   * @type number
+   */
   private scrollPosition: number;
 
+  /**
+   * Loading status
+   *
+   * @type boolean
+   */
+  public loadingMore: boolean = false;
 
   /**
    * @constructor
@@ -40,6 +51,7 @@ export class HomeComponent implements OnInit {
    * @returns void
    */
   public loadMore(): void {
+    this.loadingMore = true;
     this.steemService
       .nextPage()
       .getTrending(this.onPostsRequestResponse.bind(this));
@@ -65,6 +77,8 @@ export class HomeComponent implements OnInit {
     this.posts = this.posts.filter(post => post.imageUrls);
 
     this.posts.map(this.getAuthorDetails.bind(this));
+
+    this.loadingMore = false;
 
     setTimeout(() => {
       document.documentElement.scrollTop = document.body.scrollTop = this.scrollPosition;
