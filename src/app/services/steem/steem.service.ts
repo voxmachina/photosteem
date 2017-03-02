@@ -28,7 +28,7 @@ export class SteemService {
    * @returns void
    */
   public getTrending(callback: Callback): void {
-    steem.api.getDiscussionsByTrending({tag: this.tag, limit: this.pageLimit}, callback);
+    steem.api.getDiscussionsByTrending({path: this.tag, limit: this.pageLimit}, callback);
   }
 
   /**

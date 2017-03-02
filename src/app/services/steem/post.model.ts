@@ -53,8 +53,10 @@ export class Post {
       throw new Error('Error while parsing Post json metadata');
     }
 
-    post.imageUrls = postMetadata.image;
-    post.body = post.body.replace(/<(?:.|\n)*?>/gm, '').substr(0, 50) + "...";
+    if (postMetadata.image && postMetadata.image.length && postMetadata.image.length > 0) {
+      post.imageUrls = postMetadata.image;
+      post.body = post.body.replace(/<(?:.|\n)*?>/gm, '').substr(0, 50) + "...";
+    }
 
     return post;
   }

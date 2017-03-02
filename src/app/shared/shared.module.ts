@@ -4,10 +4,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "@angular/material";
 import {RouterModule} from "@angular/router";
 import {HeaderComponent} from "../components/header/header.component";
-
-import 'hammerjs';
+import {LazyLoadImageModule} from 'ng2-lazyload-image';
 import {SteemService} from "../services/steem/steem.service";
 import {PostCardComponent} from "../components/post-card/post-card.component";
+
+import 'hammerjs';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {PostCardComponent} from "../components/post-card/post-card.component";
     ReactiveFormsModule,
     CommonModule,
     MaterialModule,
+    LazyLoadImageModule,
     RouterModule
   ],
   declarations: [HeaderComponent, PostCardComponent],
@@ -23,6 +25,7 @@ import {PostCardComponent} from "../components/post-card/post-card.component";
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    LazyLoadImageModule,
     HeaderComponent,
     PostCardComponent
   ]

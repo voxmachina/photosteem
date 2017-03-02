@@ -34,6 +34,7 @@ export class HomeComponent {
       this.posts = res.map(Post.parsePost);
     }
 
+    this.posts = this.posts.filter(post => post.imageUrls);
     this.posts.map(this.getAuthorDetails.bind(this))
   }
 
