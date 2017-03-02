@@ -17,9 +17,7 @@ export class HomeComponent {
    */
   public posts: Array<Post>;
 
-  private page: number = 0;
-
-  private pages: Array<any> = [];
+  private scrollPosition;
 
   /**
    * The current results page
@@ -36,6 +34,7 @@ export class HomeComponent {
    * @param steemService
    */
   constructor(private steemService: SteemService) {
+    this.scrollPosition = document.documentElement.scrollTop = document.body.scrollTop;
     this.steemService.getTrending(this.onPostsRequestResponse.bind(this));
   }
 
@@ -58,6 +57,8 @@ export class HomeComponent {
    * @returns void
    */
   private onPostsRequestResponse(err: any, res: Array<Post>): void {
+    this.scrollPosition = document.documentElement.scrollTop = document.body.scrollTop;
+
     if (err) {
       console.error(err);
     } else {
@@ -66,16 +67,11 @@ export class HomeComponent {
 
     this.posts = this.posts.filter(post => post.imageUrls);
 
+    this.posts.map(this.getAuthorDetails.bind(this));
 
-
-    this.pages[this.page] = this.posts.splice(this.offset);
-    this.page++;
-    this.offset = this.posts.length;
-
-
-    console.log("offset", this.pages);
-
-    this.posts.map(this.getAuthorDetails.bind(this))
+    setTimeout(() => {
+      document.documentElement.scrollTop = document.body.scrollTop = this.scrollPosition;
+    });
   }
 
   /**

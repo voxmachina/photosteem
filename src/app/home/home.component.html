@@ -7,9 +7,7 @@
          [infiniteScrollThrottle]="500"
          (scrolled)="loadMore()">
 
-  <div *ngFor="let page of pages">
-    <ps-post-card *ngFor="let post of page" [post]="post"></ps-post-card>
-  </div>
+  <ps-post-card *ngFor="let post of posts" [post]="post"></ps-post-card>
 
   <div class="page-loader" *ngIf="!posts">
     <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
