@@ -1,21 +1,14 @@
-.example-card {
-  width: 400px;
-}
-
-.example-header-image {
-  background-image: url('https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916_960_720.png');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
 md-card {
-  margin: 20px 0;
+  width: 320px;
+  margin: 20px auto;
+}
+
+md-card-header {
+  height: 60px;
 }
 
 md-card-content p {
-  width: 400px;
+  width: 320px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

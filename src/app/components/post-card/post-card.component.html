@@ -1,15 +1,17 @@
-<md-card class="example-card" *ngIf="post">
+<md-card *ngIf="post">
   <md-card-header>
-    <div md-card-avatar class="example-header-image"></div>
+    <div *ngIf="post.author && post.author.avatar" md-card-avatar class="avatar">
+      <img src="{{post.author.avatar}}" alt="">
+    </div>
     <md-card-title>{{post.title}}</md-card-title>
-    <md-card-subtitle>{{post.author}}</md-card-subtitle>
+    <md-card-subtitle *ngIf="post.author">{{post.author.name}}</md-card-subtitle>
   </md-card-header>
-  <img md-card-image width="400" src="{{post.imageUrls[0]}}">
+  <img md-card-image src="{{post.imageUrls[0]}}">
   <md-card-content>
     <p [innerHtml]="post.body"></p>
   </md-card-content>
-  <md-card-actions>
-    <button md-button>LIKE</button>
-    <button md-button>SHARE</button>
-  </md-card-actions>
+  <!--<md-card-actions>-->
+    <!--<button md-button>LIKE</button>-->
+    <!--<button md-button>SHARE</button>-->
+  <!--</md-card-actions>-->
 </md-card>

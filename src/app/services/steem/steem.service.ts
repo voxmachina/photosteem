@@ -30,4 +30,16 @@ export class SteemService {
   public getTrending(callback: Callback): void {
     steem.api.getDiscussionsByTrending({tag: this.tag, limit: this.pageLimit}, callback);
   }
+
+  /**
+   * Gets an account details
+   *
+   * @public
+   * @param username
+   * @param callback
+   * @returns void
+   */
+  public getAccountDetails(username, callback): void {
+    steem.api.getAccounts([username], callback);
+  }
 }

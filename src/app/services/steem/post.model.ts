@@ -1,11 +1,41 @@
 import {Metadata} from "./metadata.model";
+import {Author} from "./author.model";
 
 export class Post {
-  title: string;
-  author: string;
-  body: string;
-  json_metadata: string;
-  imageUrls: Array<string>;
+  /**
+   * Title of the post
+   *
+   * @type string
+   */
+  public title: string;
+
+  /**
+   * Name of the author of the post
+   *
+   * @type Author
+   */
+  public author: Author;
+
+  /**
+   * Text content of the post
+   *
+   * @type string
+   */
+  public body: string;
+
+  /**
+   * An array of the post images
+   *
+   * @type string
+   */
+  public imageUrls: Array<string>;
+
+  /**
+   * JSON string of the post metadata
+   *
+   * @type string
+   */
+  private json_metadata: string;
 
   /**
    * Parses a post metadata
@@ -24,7 +54,7 @@ export class Post {
     }
 
     post.imageUrls = postMetadata.image;
-    post.body = post.body.replace(/<(?:.|\n)*?>/gm, '').substr(0, 15) + "...";
+    post.body = post.body.replace(/<(?:.|\n)*?>/gm, '').substr(0, 50) + "...";
 
     return post;
   }

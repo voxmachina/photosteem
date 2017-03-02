@@ -1,5 +1,5 @@
 <ps-header></ps-header>
 
-<section *ngFor="let post of posts">
-  <ps-post-card [post]="post"></ps-post-card>
+<section>
+  <ps-post-card *ngFor="let post of posts" [post]="post"></ps-post-card>
 </section>

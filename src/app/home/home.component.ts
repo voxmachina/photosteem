@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {SteemService} from "../services/steem/steem.service";
 import {Post} from "../services/steem/post.model";
+import {Author} from "../services/steem/author.model";
 
 @Component({
   selector: 'ps-home',
@@ -33,6 +34,37 @@ export class HomeComponent {
       this.posts = res.map(Post.parsePost);
     }
 
-    console.log(this.posts[0]);
+    this.posts.map(this.getAuthorDetails.bind(this))
+  }
+
+  /**
+   * Get a post author details
+   *
+   * @private
+   * @param post
+   * @returns void
+   */
+  private getAuthorDetails(post: Post): void {
+    this.steemService.getAccountDetails(
+      post.author,
+      (err, res) => this.onAuthorRequestResponse(err, res, post)
+    )
+  }
+
+  /**
+   * On author details request response
+   *
+   * @private
+   * @param err
+   * @param author
+   * @param post
+   * @returns void
+   */
+  private onAuthorRequestResponse(err: any, author: any, post: Post): void {
+    if (err) {
+      console.log(err);
+    } else {
+      post.author = Author.parseAuthor(author[0]);
+    }
   }
 }
