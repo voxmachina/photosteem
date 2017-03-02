@@ -10,6 +10,13 @@ export class Post {
   public title: string;
 
   /**
+   * The post URL
+   *
+   * @type string
+   */
+  public url: string;
+
+  /**
    * Name of the author of the post
    *
    * @type Author

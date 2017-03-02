@@ -7,7 +7,9 @@
     <md-card-subtitle *ngIf="post.author">{{post.author.name}}</md-card-subtitle>
   </md-card-header>
   <div class="content-image-container">
-    <img class="content-image" border="0" md-card-image [lazyLoad]="post.imageUrls[0]">
+    <a target="_blank" href="https://steemit.com{{post.url}}">
+      <img class="content-image" border="0" md-card-image [lazyLoad]="post.imageUrls[0]">
+    </a>
     <!--<md-card-actions>-->
       <!--<button md-button><md-icon class="icon">thumb_up</md-icon></button>-->
       <!--<button md-button><md-icon class="icon">thumb_down</md-icon></button>-->

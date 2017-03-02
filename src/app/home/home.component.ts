@@ -79,6 +79,8 @@ export class HomeComponent implements OnInit {
     this.posts = this.posts.filter(post => post.imageUrls);
     this.posts.map(this.getAuthorDetails.bind(this));
 
+    console.log(this.posts[0]);
+
     this.onPostsUpdate();
   }
 
