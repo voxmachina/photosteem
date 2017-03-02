@@ -9,14 +9,44 @@ import {Author} from "../services/steem/author.model";
   styleUrls: ['home.component.scss']
 })
 export class HomeComponent {
+
+  /**
+   * A list of Posts
+   *
+   * @type Array<Post>
+   */
   public posts: Array<Post>;
+
+  private page: number = 0;
+
+  private pages: Array<any> = [];
+
+  /**
+   * The current results page
+   * Current API does not support pagination, so we'll have
+   * to handle it on the client side by multiplying results and keeping
+   * a offset pointer
+   *
+   * @type number
+   */
+  private offset: number = 0;
 
   /**
    * @constructor
    * @param steemService
    */
   constructor(private steemService: SteemService) {
-    steemService.getTrending(this.onPostsRequestResponse.bind(this));
+    this.steemService.getTrending(this.onPostsRequestResponse.bind(this));
+  }
+
+  /**
+   * Loads more results
+   *
+   * @returns void
+   */
+  public loadMore(): void {
+    this.steemService.nextPage();
+    this.steemService.getTrending(this.onPostsRequestResponse.bind(this));
   }
 
   /**
@@ -35,6 +65,16 @@ export class HomeComponent {
     }
 
     this.posts = this.posts.filter(post => post.imageUrls);
+
+
+
+    this.pages[this.page] = this.posts.splice(this.offset);
+    this.page++;
+    this.offset = this.posts.length;
+
+
+    console.log("offset", this.pages);
+
     this.posts.map(this.getAuthorDetails.bind(this))
   }
 
