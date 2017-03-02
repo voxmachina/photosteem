@@ -44,10 +44,12 @@ export class SteemService {
    * Sets next page
    *
    * @public
-   * @returns void
+   * @returns SteemService
    */
-  public nextPage(): void {
+  public nextPage(): SteemService {
     this.page++;
+
+    return this;
   }
 
   /**

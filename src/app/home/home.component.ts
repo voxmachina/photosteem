@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SteemService} from "../services/steem/steem.service";
 import {Post} from "../services/steem/post.model";
 import {Author} from "../services/steem/author.model";
@@ -8,7 +8,7 @@ import {Author} from "../services/steem/author.model";
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   /**
    * A list of Posts
@@ -17,23 +17,19 @@ export class HomeComponent {
    */
   public posts: Array<Post>;
 
-  private scrollPosition;
+  private scrollPosition: number;
 
-  /**
-   * The current results page
-   * Current API does not support pagination, so we'll have
-   * to handle it on the client side by multiplying results and keeping
-   * a offset pointer
-   *
-   * @type number
-   */
-  private offset: number = 0;
 
   /**
    * @constructor
    * @param steemService
    */
-  constructor(private steemService: SteemService) {
+  constructor(private steemService: SteemService) { }
+
+  /**
+   * Upon component initialization
+   */
+  ngOnInit() {
     this.scrollPosition = document.documentElement.scrollTop = document.body.scrollTop;
     this.steemService.getTrending(this.onPostsRequestResponse.bind(this));
   }
@@ -44,8 +40,9 @@ export class HomeComponent {
    * @returns void
    */
   public loadMore(): void {
-    this.steemService.nextPage();
-    this.steemService.getTrending(this.onPostsRequestResponse.bind(this));
+    this.steemService
+      .nextPage()
+      .getTrending(this.onPostsRequestResponse.bind(this));
   }
 
   /**

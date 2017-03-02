@@ -3,8 +3,6 @@
 <section class="content"
          infinite-scroll
          [infiniteScrollDistance]="2"
-         [infiniteScrollUpDistance]="1.5"
-         [infiniteScrollThrottle]="500"
          (scrolled)="loadMore()">
 
   <ps-post-card *ngFor="let post of posts" [post]="post"></ps-post-card>
