@@ -1,7 +1,17 @@
+md-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 999999999;
+}
+
 .icon {
   padding: 0 14px;
 }
 
 .spacer {
   flex: 1 1 auto;
+}
+
+a md-icon {
+  color: #fff;
 }
