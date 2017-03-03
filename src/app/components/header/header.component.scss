@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 md-toolbar {
   position: fixed;
   top: 0;
@@ -8,12 +10,28 @@ md-toolbar {
   justify-content: center;
 }
 
+.nav {
+  display: none;
+
+  @media only screen and (min-width : $screen-sm-min) {
+    display: flex;
+  }
+}
+
 .icon {
   padding: 0 14px;
 }
 
 .spacer {
   flex: 1 1 auto;
+
+  &-nav {
+    display: none;
+
+    @media only screen and (min-width : $screen-sm-min) {
+      display: flex;
+    }
+  }
 }
 
 a md-icon {
