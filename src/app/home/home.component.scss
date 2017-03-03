@@ -1,20 +1,12 @@
-$xss: '320px';
-$xs: '480px';
-$sm: '768px';
-$md: '992px';
-$lg: '1200px';
+@import "../../styles/variables";
 
 section {
-  max-width: 400px;
-  margin: 50px auto 0 auto;
+  width: 100%;
+  margin: 60px auto 0 auto;
   display: flex;
   flex-direction: column;
 
-  @media only screen and (min-width : $sm) {
-    max-width: 650px;
+  @media only screen and (min-width : $screen-sm-min) {
+    width: 650px;
   }
-}
-
-.next-page-loader {
-  margin: 0 auto;
 }

@@ -1,18 +1,11 @@
 import {Metadata} from "./metadata.model";
 
 export class Author {
-  /**
-   * Title of the post
-   *
-   * @type string
-   */
-  public name: string;
 
   /**
    * This author avatar url
    */
   public avatar: string;
-
 
   /**
    * JSON string of the post metadata
@@ -33,10 +26,10 @@ export class Author {
     try {
       postMetadata = JSON.parse(author.json_metadata);
     } catch(e) {
-      throw new Error('Error while parsing Post json metadata');
+      console.warn('Error while parsing Post json metadata');
     }
 
-    if (postMetadata.profile && postMetadata.profile.profile_image) {
+    if (postMetadata && postMetadata.profile && postMetadata.profile.profile_image) {
       author.avatar = postMetadata.profile.profile_image;
     }
 

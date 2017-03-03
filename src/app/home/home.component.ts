@@ -15,14 +15,7 @@ export class HomeComponent implements OnInit {
    *
    * @type Array<Post>
    */
-  public posts: Array<Post>;
-
-  /**
-   * Current scroll position
-   *
-   * @type number
-   */
-  private scrollPosition: number;
+  public posts: Array<Post> = [];
 
   /**
    * Loading status
@@ -41,7 +34,6 @@ export class HomeComponent implements OnInit {
    * Upon component initialization
    */
   ngOnInit() {
-    this.scrollPosition = document.documentElement.scrollTop = document.body.scrollTop;
     this.steemService.getTrending(this.onPostsRequestResponse.bind(this));
   }
 
@@ -68,31 +60,39 @@ export class HomeComponent implements OnInit {
    * @returns void
    */
   private onPostsRequestResponse(err: any, res: Array<Post>): void {
-    this.scrollPosition = document.documentElement.scrollTop = document.body.scrollTop;
+    if (err) return;
 
-    if (err) {
-      console.error(err);
-    } else {
-      this.posts = res.map(Post.parsePost);
-    }
+    let previousLength = this.posts ? this.posts.length : 0;
 
-    this.posts = this.posts.filter(post => post.imageUrls);
-    this.posts.map(this.getAuthorDetails.bind(this));
+    let posts = res.splice(previousLength)
+      .map(Post.parsePost)
+      .filter(post => post.imageUrls);
 
-    console.log(this.posts[0]);
-
-    this.onPostsUpdate();
+    this.updatePosts(posts);
+    this.updateAuthors(posts);
   }
 
   /**
-   * When posts data is updated
+   * Updates the list of posts
    *
    * @private
+   * @param posts
    * @returns void
    */
-  private onPostsUpdate(): void {
+  private updatePosts(posts: Array<Post>): void {
+    this.posts = this.posts.concat(posts);
     this.loadingMore = false;
-    setTimeout(() => document.documentElement.scrollTop = document.body.scrollTop = this.scrollPosition, 0);
+  }
+
+  /**
+   * Updates asynchronously current list of posts author's info
+   *
+   * @private
+   * @param posts
+   * @returns void
+   */
+  private updateAuthors(posts: Array<Post>): void {
+    setTimeout(() => posts.map(this.getAuthorDetails.bind(this)), 100);
   }
 
   /**

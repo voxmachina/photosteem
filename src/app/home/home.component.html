@@ -1,22 +1,6 @@
 <ps-header></ps-header>
-
-<section class="content"
-         infinite-scroll
-         [infiniteScrollDistance]="2"
-         (scrolled)="loadMore()">
-
+<section class="content" infinite-scroll [infiniteScrollDistance]="2" (scrolled)="loadMore()">
   <ps-post-card *ngFor="let post of posts" [post]="post"></ps-post-card>
-
-  <div class="page-loader" *ngIf="!posts">
-    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-      <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-    </svg>
-  </div>
-
-  <div class="next-page-loader" *ngIf="loadingMore">
-    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-      <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-    </svg>
-  </div>
-
+  <ps-loader *ngIf="!posts || posts.length === 0" [className]="'big-loader'"></ps-loader>
+  <ps-loader *ngIf="loadingMore" [className]="'small-loader'"></ps-loader>
 </section>

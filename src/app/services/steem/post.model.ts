@@ -37,6 +37,12 @@ export class Post {
    */
   public imageUrls: Array<string>;
 
+  public tags: Array<string>;
+
+  public value: any;
+
+  public pending_payout_value: string;
+
   /**
    * JSON string of the post metadata
    *
@@ -57,13 +63,24 @@ export class Post {
     try {
       postMetadata = JSON.parse(post.json_metadata);
     } catch(e) {
-      throw new Error('Error while parsing Post json metadata');
+      console.warn('Error while parsing Post json metadata');
     }
 
-    if (postMetadata.image && postMetadata.image.length && postMetadata.image.length > 0) {
+    if (postMetadata && postMetadata.image && postMetadata.image.length && postMetadata.image.length > 0) {
       post.imageUrls = postMetadata.image;
       post.body = post.body.replace(/<(?:.|\n)*?>/gm, '').substr(0, 50) + "...";
     }
+
+    if (post.pending_payout_value) {
+      let valueTokens: Array<string> = post.pending_payout_value.split(" ");
+      post.value = parseFloat(valueTokens[0]).toFixed(2);
+    }
+
+    if (postMetadata && postMetadata.tags && postMetadata.tags.length && postMetadata.tags.length > 0) {
+      post.tags = postMetadata.tags;
+    }
+
+    console.log("post", post);
 
     return post;
   }

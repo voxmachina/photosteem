@@ -3,4 +3,5 @@ export class Metadata {
   profile: {
     profile_image: string;
   };
+  tags: Array<string>;
 }
