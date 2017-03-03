@@ -85,6 +85,15 @@ md-card-content {
     padding: 5px;
     font-size: 10px;
   }
+
+  .image-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 36%, rgba(0,128,128,0) 100%);
+  }
 }
 
 .mat-card-image:first-child {
@@ -104,7 +113,6 @@ md-card-actions {
   }
 
   a {
-    opacity: 0.75;
 
     &.repeat {
       margin-left: 20px;

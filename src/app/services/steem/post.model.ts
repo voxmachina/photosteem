@@ -2,6 +2,7 @@ import {Metadata} from "./metadata.model";
 import {Author} from "./author.model";
 
 export class Post {
+
   /**
    * Title of the post
    *

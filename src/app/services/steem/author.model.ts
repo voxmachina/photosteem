@@ -3,6 +3,13 @@ import {Metadata} from "./metadata.model";
 export class Author {
 
   /**
+   * This author name
+   *
+   * @type string
+   */
+  public name: string;
+
+  /**
    * This author avatar url
    */
   public avatar: string;
@@ -31,6 +38,8 @@ export class Author {
 
     if (postMetadata && postMetadata.profile && postMetadata.profile.profile_image) {
       author.avatar = postMetadata.profile.profile_image;
+    } else {
+      author.avatar = '/assets/default-avatar.jpg';
     }
 
     return author;

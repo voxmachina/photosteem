@@ -9,8 +9,9 @@
   <div class="content-image-container">
     <md-chip color="primary">{{post.value}}$</md-chip>
     <a target="_blank" href="https://steemit.com{{post.url}}">
-      <img class="content-image" border="0" md-card-image [lazyLoad]="post.imageUrls[0]">
+      <img class="content-image" border="0" md-card-image [errorImage]="'/assets/error.png'" [lazyLoad]="post.imageUrls[0]" [offset]="2400">
     </a>
+    <div class="image-gradient"></div>
     <md-card-actions>
       <a (click)="openDialog()" class="repeat" md-mini-fab><md-icon class="icon">repeat</md-icon></a>
       <span class="spacer"></span>
