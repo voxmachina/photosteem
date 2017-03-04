@@ -1,11 +1,13 @@
-import {Component, Input, ElementRef} from '@angular/core';
+import {Component, Input, ElementRef, OnChanges, SimpleChanges} from '@angular/core';
+
+declare const Hammer: any;
 
 @Component({
   selector: 'ps-slideshow',
   templateUrl: 'slideshow.component.html',
   styleUrls: ['slideshow.component.scss']
 })
-export class SlideshowComponent {
+export class SlideshowComponent implements OnChanges {
 
   /**
    * A set of image links
@@ -22,11 +24,49 @@ export class SlideshowComponent {
   public index: number = 0;
 
   /**
+   * Current image wrapper element
+   *
+   * @type number
+   */
+  private imageWrapper: any;
+
+  /**
+   * Current image container element
+   *
+   * @type number
+   */
+  private imageContainer: any;
+
+  /**
    * @constructor
    * @public
    * @param elementRef
    */
   constructor(private elementRef: ElementRef) { }
+
+  /**
+   * On input data change events
+   *
+   * @param changes
+   */
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['images'] && changes['images'].currentValue) {
+     setTimeout(this.loadContainers.bind(this), 300);
+    }
+  }
+
+  /**
+   * Loads image containers
+   *
+   * @private
+   * @returns void
+   */
+  private loadContainers(): void {
+    this.imageWrapper = this.elementRef.nativeElement.querySelector('.image-slideshow-container .image');
+    this.imageContainer = this.imageWrapper.querySelector('.image-slideshow-container .image .content-image');
+    Hammer(this.imageWrapper).on("swipeleft", this.next.bind(this));
+    Hammer(this.imageWrapper).on("swiperight", this.previous.bind(this));
+  }
 
   /**
    * Show previous image
@@ -66,19 +106,16 @@ export class SlideshowComponent {
    * @returns void
    */
   private updateImage(): void {
-    const wrapper = this.elementRef.nativeElement.querySelector('.image-slideshow-container .image');
-    const container = wrapper.querySelector('.image-slideshow-container .image .content-image');
-    const oldReference = container.src;
-
-    wrapper.classList.add("slide");
-    container.classList.remove('ng2-lazyloaded');
-    container.src = "";
+    const oldReference = this.imageContainer.src;
+    this.imageWrapper.classList.add("slide");
+    this.imageContainer.classList.remove('ng2-lazyloaded');
+    this.imageContainer.src = "";
 
     let img = new Image();
     img.src = this.images[this.index];
 
-    img.addEventListener('load', this.onImageLoaded.bind(this, img, wrapper, container));
-    img.addEventListener('error', this.onImageError.bind(this, wrapper, container, oldReference));
+    img.addEventListener('load', this.onImageLoaded.bind(this, img));
+    img.addEventListener('error', this.onImageError.bind(this, oldReference));
   }
 
   /**
@@ -86,28 +123,24 @@ export class SlideshowComponent {
    *
    * @private
    * @param img
-   * @param wrapper
-   * @param container
    * @returns void
    */
-  private onImageLoaded(img, wrapper, container): void {
-    container.src = img.src;
-    wrapper.classList.remove("slide");
-    container.classList.add('ng2-lazyloaded');
+  private onImageLoaded(img): void {
+    this.imageContainer.src = img.src;
+    this.imageWrapper.classList.remove("slide");
+    this.imageContainer.classList.add('ng2-lazyloaded');
   }
 
   /**
    * On image load error
    *
    * @private
-   * @param wrapper
-   * @param container
    * @param oldReference
    * @returns void
    */
-  private onImageError(wrapper, container, oldReference): void {
-    container.src = oldReference;
-    wrapper.classList.remove("slide");
-    container.classList.add('ng2-lazyloaded');
+  private onImageError(oldReference): void {
+    this.imageContainer.src = oldReference;
+    this.imageWrapper.classList.remove("slide");
+    this.imageContainer.classList.add('ng2-lazyloaded');
   }
 }

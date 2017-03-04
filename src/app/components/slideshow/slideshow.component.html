@@ -3,12 +3,16 @@
   <div class="image">
 
     <a target="_blank" href="">
-      <img class="content-image"
+      <img #img class="content-image"
            border="0" md-card-image
            [errorImage]="'/assets/error.png'"
            [lazyLoad]="images[index]" [offset]="2400">
     </a>
     <div class="image-gradient"></div>
+
+    <ol class="circle-pagination" *ngIf="images.length > 1">
+      <li *ngFor="let image of images"><a [class.active]="img.src == image"></a></li>
+    </ol>
 
   </div>
 

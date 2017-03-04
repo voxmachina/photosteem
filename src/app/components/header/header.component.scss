@@ -10,8 +10,11 @@ md-toolbar {
   z-index: 1;
 
   button {
+    border-radius: 20px;
+    margin: 0 10px;
+
     &.active {
-      border-top: 1px solid white;
+      background: #333;
     }
   }
 }

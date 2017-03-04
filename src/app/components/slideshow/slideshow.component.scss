@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .image-slideshow-container {
   display: flex;
   width: 100%;
@@ -48,13 +50,17 @@
 
   .pagination-left, .pagination-right {
     position: absolute;
-    display: flex;
+    display: none;
     height: 100%;
     width: 60px;
     justify-content: center;
     align-items: center;
     opacity: 0.5;
     cursor: pointer;
+
+    @media only screen and (min-width : $screen-sm-min) {
+      display: flex;
+    }
 
     md-icon {
       color: #fff;
@@ -74,5 +80,42 @@
   .pagination-right {
     top: 0;
     right: 0;
+  }
+
+  .circle-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    bottom: 40px;
+    position: absolute;
+    margin:25px auto 0;
+    padding:0;
+
+    @media only screen and (min-width : $screen-sm-min) {
+      display: none;
+    }
+
+    li {
+      list-style:none;
+      float:left;
+      margin:0 2px;
+    }
+
+    li a {
+      display:block;
+      width:10px;
+      height:10px;
+      text-indent:-10000px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      box-shadow: inset 1px 1px 1px rgba(0, 0 ,0, 0.4);
+    }
+
+    li a.active {
+      background: #fff;
+    }
   }
 }

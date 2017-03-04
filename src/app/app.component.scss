@@ -18,9 +18,10 @@ md-toolbar {
     height: 36px;
     border-right: 1px solid rgba(255, 255, 255, 0.5);
     justify-content: center;
+    border-radius: 0;
 
     &.active {
-      border-top: 1px solid white;
+      background: #333;
     }
 
     &:last-child {
