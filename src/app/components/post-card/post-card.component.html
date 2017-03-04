@@ -6,18 +6,28 @@
     <md-card-title>{{post.title}}</md-card-title>
     <md-card-subtitle *ngIf="post.author">{{post.author.name}}</md-card-subtitle>
   </md-card-header>
+
   <div class="content-image-container">
+
     <md-chip color="primary">{{post.value}}$</md-chip>
-    <a target="_blank" href="https://steemit.com{{post.url}}">
-      <img class="content-image" border="0" md-card-image [errorImage]="'/assets/error.png'" [lazyLoad]="post.imageUrls[0]" [offset]="2400">
-    </a>
-    <div class="image-gradient"></div>
+
+    <ps-slideshow [images]="post.imageUrls"></ps-slideshow>
+
     <md-card-actions>
-      <a (click)="openDialog()" class="repeat" md-mini-fab><md-icon class="icon">repeat</md-icon></a>
+      <a (click)="reblog(post.author, post.permlink)" class="repeat" md-mini-fab>
+        <md-icon *ngIf="!reblogging && !reblogged" class="icon">repeat</md-icon>
+        <md-icon *ngIf="!reblogging && reblogged" style="color:red;" class="icon">repeat_one</md-icon>
+        <md-spinner *ngIf="reblogging"></md-spinner>
+      </a>
       <span class="spacer"></span>
-      <a (click)="openDialog()" class="love" md-mini-fab><md-icon class="icon">favorite_border</md-icon></a>
+      <a (click)="vote(post.author, post.permlink)" class="love" md-mini-fab>
+        <md-icon *ngIf="!voting && !voted" class="icon">favorite_border</md-icon>
+        <md-icon *ngIf="!voting && voted" class="icon" style="color:red;">favorite</md-icon>
+        <md-spinner *ngIf="voting"></md-spinner>
+      </a>
     </md-card-actions>
   </div>
+
   <md-card-content>
     <p>
       <a (click)="openDialog()" *ngFor="let tag of post.tags">#{{tag}}</a>

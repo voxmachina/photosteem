@@ -1,5 +1,6 @@
 import {Metadata} from "./metadata.model";
 import {Author} from "./author.model";
+import {Vote} from "./vote.model";
 
 export class Post {
 
@@ -9,6 +10,17 @@ export class Post {
    * @type string
    */
   public title: string;
+
+  public active_votes: Array<Vote>;
+
+  public reblogged_by: any;
+
+  /**
+   * This post permlink
+   *
+   * @type string
+   */
+  public permlink: string;
 
   /**
    * The post URL
@@ -80,8 +92,6 @@ export class Post {
     if (postMetadata && postMetadata.tags && postMetadata.tags.length && postMetadata.tags.length > 0) {
       post.tags = postMetadata.tags;
     }
-
-    console.log("post", post);
 
     return post;
   }

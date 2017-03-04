@@ -10,9 +10,20 @@ export class Author {
   public name: string;
 
   /**
+   * This author username
+   *
+   * @type string
+   */
+  public username: string;
+
+  /**
    * This author avatar url
    */
   public avatar: string;
+
+  public can_vote: boolean;
+
+  public voting_power: number;
 
   /**
    * JSON string of the post metadata

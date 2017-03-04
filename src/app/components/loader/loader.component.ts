@@ -6,5 +6,11 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['loader.component.scss']
 })
 export class LoaderComponent {
+
+  /**
+   * A optional class name
+   *
+   * @type string
+   */
   @Input() className: string;
 }

@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "@angular/material";
 import {RouterModule} from "@angular/router";
+
 import {HeaderComponent} from "../components/header/header.component";
 import {InfiniteScrollModule} from 'angular2-infinite-scroll';
 import {LazyLoadImageModule} from 'ng2-lazyload-image';
@@ -12,6 +13,11 @@ import {LoaderComponent} from "../components/loader/loader.component";
 import {DialogComponent} from "../components/dialog/dialog.component";
 
 import 'hammerjs';
+import {AuthService} from "../services/auth/auth.service";
+import {ParametersService} from "../services/parameters/parameters.service";
+import {SlideshowComponent} from "../components/slideshow/slideshow.component";
+import {GoogleAnalyticsService} from "../services/analytics/google-analytics.service";
+import {AlertService} from "../services/alert/alert.service";
 
 @NgModule({
   imports: [
@@ -23,8 +29,20 @@ import 'hammerjs';
     InfiniteScrollModule,
     RouterModule
   ],
-  declarations: [HeaderComponent, PostCardComponent, LoaderComponent, DialogComponent],
-  providers: [SteemService],
+  declarations: [
+    HeaderComponent,
+    PostCardComponent,
+    LoaderComponent,
+    DialogComponent,
+    SlideshowComponent
+  ],
+  providers: [
+    SteemService,
+    AuthService,
+    ParametersService,
+    GoogleAnalyticsService,
+    AlertService
+  ],
   entryComponents: [DialogComponent],
   exports: [
     FormsModule,
@@ -35,7 +53,8 @@ import 'hammerjs';
     HeaderComponent,
     DialogComponent,
     InfiniteScrollModule,
-    PostCardComponent
+    PostCardComponent,
+    SlideshowComponent
   ]
 })
 export class SharedModule { }

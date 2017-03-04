@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  steem: {
+    host: 'http://steem.photos/',
+    appName: 'peugenio'
+  }
 };

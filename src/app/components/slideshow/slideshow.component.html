@@ -1,0 +1,18 @@
+<div class="image-slideshow-container swiper-container" *ngIf="images">
+
+  <div class="image">
+
+    <a target="_blank" href="">
+      <img class="content-image"
+           border="0" md-card-image
+           [errorImage]="'/assets/error.png'"
+           [lazyLoad]="images[index]" [offset]="2400">
+    </a>
+    <div class="image-gradient"></div>
+
+  </div>
+
+  <div class="pagination-left" (click)="previous()"><md-icon class="icon">keyboard_arrow_left</md-icon></div>
+  <div class="pagination-right" (click)="next()"><md-icon class="icon">keyboard_arrow_right</md-icon></div>
+
+</div>

@@ -22,7 +22,15 @@
     </button>
   </div>
   <span class="spacer"></span>
-  <a (click)="openDialog()">
-    <md-icon class="icon">account_circle</md-icon>
+  <a (click)="auth()" *ngIf="!user">
+    <md-icon class="icon user-icon">account_circle</md-icon>
   </a>
+  <a *ngIf="user && user.avatar" md-card-avatar class="avatar" [mdMenuTriggerFor]="menu" (click)="trackProfileClick()">
+    <img [defaultImage]="'/assets/img-loader.gif'" [lazyLoad]="user.avatar" alt="">
+  </a>
+  <md-menu #menu="mdMenu">
+    <button md-menu-item (click)="auth()">
+      <span>logout</span>
+    </button>
+  </md-menu>
 </md-toolbar>
