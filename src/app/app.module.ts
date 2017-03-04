@@ -5,7 +5,7 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {HomeModule} from "./home/home.module";
 import {AppRoutingModule} from "./app.routing";
-import {SharedModule} from "./shared/shared.module";
+import {SharedModule} from "./shared/core.module";
 
 @NgModule({
   declarations: [

@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FreshComponent} from './fresh.component';
 import {FreshRoutingModule} from "./fresh.routing";
-import {SharedModule} from "../shared/shared.module";
+import {SharedModule} from "../shared/core.module";
 
 @NgModule({
   imports: [
