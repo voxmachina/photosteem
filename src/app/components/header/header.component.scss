@@ -65,3 +65,11 @@ a md-icon {
 .user-icon {
   font-size: 34px;
 }
+
+.logo {
+  background-image: url("/assets/logo.png");
+  background-size: 29px 29px;
+  background-repeat: no-repeat;
+  background-position: center left;
+  padding-left: 40px;
+}

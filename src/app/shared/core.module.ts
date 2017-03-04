@@ -13,6 +13,10 @@ import {LoaderComponent} from "../components/loader/loader.component";
 import {DialogComponent} from "../components/dialog/dialog.component";
 
 import 'hammerjs';
+
+const FastClick = require('fastclick');
+FastClick.attach(document.body);
+
 import {AuthService} from "../services/auth/auth.service";
 import {ParametersService} from "../services/parameters/parameters.service";
 import {SlideshowComponent} from "../components/slideshow/slideshow.component";
