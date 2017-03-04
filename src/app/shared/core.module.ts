@@ -18,6 +18,7 @@ import {ParametersService} from "../services/parameters/parameters.service";
 import {SlideshowComponent} from "../components/slideshow/slideshow.component";
 import {GoogleAnalyticsService} from "../services/analytics/google-analytics.service";
 import {AlertService} from "../services/alert/alert.service";
+import {ContentComponent} from "../components/content/content.component";
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import {AlertService} from "../services/alert/alert.service";
     RouterModule
   ],
   declarations: [
+    ContentComponent,
     HeaderComponent,
     PostCardComponent,
     LoaderComponent,
@@ -48,6 +50,7 @@ import {AlertService} from "../services/alert/alert.service";
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    ContentComponent,
     LoaderComponent,
     LazyLoadImageModule,
     HeaderComponent,

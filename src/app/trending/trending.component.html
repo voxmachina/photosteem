@@ -1,6 +1,0 @@
-<ps-header [user]="viewer"></ps-header>
-<section class="content" infinite-scroll [infiniteScrollDistance]="2" (scrolled)="loadMore()">
-  <ps-post-card *ngFor="let post of posts" [viewer]="viewer" [post]="post"></ps-post-card>
-  <ps-loader *ngIf="!posts || posts.length === 0" [className]="'big-loader'"></ps-loader>
-  <ps-loader *ngIf="loadingMore" [className]="'small-loader'"></ps-loader>
-</section>
