@@ -64,8 +64,14 @@ export class SlideshowComponent implements OnChanges {
   private loadContainers(): void {
     this.imageWrapper = this.elementRef.nativeElement.querySelector('.image-slideshow-container .image');
     this.imageContainer = this.imageWrapper.querySelector('.image-slideshow-container .image .content-image');
-    Hammer(this.imageWrapper).on("swipeleft", this.next.bind(this));
-    Hammer(this.imageWrapper).on("swiperight", this.previous.bind(this));
+    const mc = Hammer(this.imageWrapper);
+    mc.on("swipeleft swiperight", (evt) => {
+      if (evt.type === 'swipeleft') {
+        this.next();
+      } else if (evt.type === 'swiperight') {
+        this.previous();
+      }
+    });
   }
 
   /**

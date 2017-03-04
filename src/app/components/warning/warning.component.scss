@@ -1,0 +1,13 @@
+@import "../../../styles/variables";
+
+md-card {
+  margin: 60px 10px 10px 10px;
+  max-width: 500px;
+  padding: 14px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+  background: azure;
+
+  @media only screen and (min-width : $screen-sm-min) {
+    margin: 60px auto 10px auto;
+  };
+}

@@ -19,6 +19,14 @@ import {SlideshowComponent} from "../components/slideshow/slideshow.component";
 import {GoogleAnalyticsService} from "../services/analytics/google-analytics.service";
 import {AlertService} from "../services/alert/alert.service";
 import {ContentComponent} from "../components/content/content.component";
+import {WarningComponent} from "../components/warning/warning.component";
+import {HammerGestureConfig, HAMMER_GESTURE_CONFIG} from "@angular/platform-browser";
+
+export class HammerConfig extends HammerGestureConfig  {
+  overrides = <any>{
+    'swipe': {velocity: 0.4, threshold: 20}
+  }
+}
 
 @NgModule({
   imports: [
@@ -36,14 +44,19 @@ import {ContentComponent} from "../components/content/content.component";
     PostCardComponent,
     LoaderComponent,
     DialogComponent,
-    SlideshowComponent
+    SlideshowComponent,
+    WarningComponent
   ],
   providers: [
     SteemService,
     AuthService,
     ParametersService,
     GoogleAnalyticsService,
-    AlertService
+    AlertService,
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HammerConfig
+    }
   ],
   entryComponents: [DialogComponent],
   exports: [
@@ -57,7 +70,8 @@ import {ContentComponent} from "../components/content/content.component";
     DialogComponent,
     InfiniteScrollModule,
     PostCardComponent,
-    SlideshowComponent
+    SlideshowComponent,
+    WarningComponent
   ]
 })
 export class SharedModule { }
