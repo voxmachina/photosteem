@@ -12,7 +12,7 @@
 
   </div>
 
-  <div class="pagination-left" (click)="previous()"><md-icon class="icon">keyboard_arrow_left</md-icon></div>
-  <div class="pagination-right" (click)="next()"><md-icon class="icon">keyboard_arrow_right</md-icon></div>
+  <div *ngIf="images.length > 0 && index > 0" class="pagination-left" (click)="previous()"><md-icon class="icon">keyboard_arrow_left</md-icon></div>
+  <div *ngIf="images.length > 0 && index < images.length - 1" class="pagination-right" (click)="next()"><md-icon class="icon">keyboard_arrow_right</md-icon></div>
 
 </div>

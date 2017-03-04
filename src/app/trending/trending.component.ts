@@ -6,11 +6,11 @@ import {AuthService} from "../services/auth/auth.service";
 import {AlertService} from "../services/alert/alert.service";
 
 @Component({
-  selector: 'ps-home',
-  templateUrl: 'home.component.html',
-  styleUrls: ['home.component.scss']
+  selector: 'ps-trending',
+  templateUrl: 'trending.component.html',
+  styleUrls: ['trending.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class TrendingComponent implements OnInit {
 
   /**
    * Current viewer
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
    */
   ngOnInit() {
     this.authService.authenticate((err, res) => this.onAuthenticationResponse(err, res));
-    this.steemService.getHot(this.onPostsRequestResponse.bind(this));
+    this.steemService.getTrending(this.onPostsRequestResponse.bind(this));
   }
 
   /**
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
     this.loadingMore = true;
     this.steemService
       .nextPage()
-      .getHot(this.onPostsRequestResponse.bind(this));
+      .getTrending(this.onPostsRequestResponse.bind(this));
   }
 
   /**

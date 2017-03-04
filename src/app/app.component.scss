@@ -14,10 +14,14 @@ md-toolbar {
   button {
     flex-grow: 1;
     display: flex;
-    height: 100%;
     min-width: 44px;
+    height: 36px;
     border-right: 1px solid rgba(255, 255, 255, 0.5);
     justify-content: center;
+
+    &.active {
+      border-top: 1px solid white;
+    }
 
     &:last-child {
       border-right: none;

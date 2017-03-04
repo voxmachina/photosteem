@@ -3,11 +3,17 @@
 md-toolbar {
   position: fixed;
   top: 0;
-  z-index: 1;
   min-height: 50px;
   height: 50px;
   display: flex;
   justify-content: center;
+  z-index: 1;
+
+  button {
+    &.active {
+      border-top: 1px solid white;
+    }
+  }
 }
 
 .nav {
@@ -35,7 +41,7 @@ md-toolbar {
 }
 
 md-menu {
-  z-index: 999999999;
+  z-index: 2;
 }
 
 a {

@@ -43,6 +43,39 @@ export class SteemService {
   }
 
   /**
+   * Gets a list of the new posts
+   *
+   * @public
+   * @param callback
+   * @returns void
+   */
+  public getNew(callback: Callback): void {
+    steem.api.getDiscussionsByCreated({tag: this.tag, limit: this.pageLimit * this.page}, callback);
+  }
+
+  /**
+   * Gets a list of the hot posts
+   *
+   * @public
+   * @param callback
+   * @returns void
+   */
+  public getHot(callback: Callback): void {
+    steem.api.getDiscussionsByHot({tag: this.tag, limit: this.pageLimit * this.page}, callback);
+  }
+
+  /**
+   * Gets a list of the feed
+   *
+   * @public
+   * @param callback
+   * @returns void
+   */
+  public getFeed(callback: Callback): void {
+    steem.api.getDiscussionsByFeed({tag: this.tag, limit: this.pageLimit * this.page}, callback);
+  }
+
+  /**
    * Performs a vote action
    *
    * @public

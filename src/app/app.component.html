@@ -1,21 +1,15 @@
 <router-outlet></router-outlet>
 <md-toolbar color="primary">
-  <button (click)="openDialog()" md-button>
-    <md-icon class="example-icon">home</md-icon>
+  <button routerLink="/home" routerLinkActive="active" md-button>
+    <span>HOT</span>
   </button>
-  <button (click)="openDialog()" md-button>
-    <md-icon class="example-icon">new_releases</md-icon>
+  <button routerLink="/trending" routerLinkActive="active" md-button>
+    <span>TRENDING</span>
   </button>
-  <button (click)="openDialog()" md-button>
-    <md-icon class="example-icon">equalizer</md-icon>
+  <button routerLink="/fresh" routerLinkActive="active" md-button>
+    <span>FRESH</span>
   </button>
-  <button (click)="openDialog()" md-button>
-    <md-icon class="example-icon">call_made</md-icon>
-  </button>
-  <button (click)="openDialog()" md-button>
-    <md-icon class="example-icon">call_merge</md-icon>
-  </button>
-  <button (click)="openDialog()" md-button>
+  <button (click)="openSupportDialog()" md-button>
     <md-icon class="example-icon">add</md-icon>
   </button>
 </md-toolbar>

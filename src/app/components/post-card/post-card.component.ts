@@ -184,7 +184,7 @@ export class PostCardComponent implements OnChanges {
       this.alertService.display('There was an error, please try again later');
     } else {
       this.voted = false;
-      this.alertService.display('Voted!');
+      this.alertService.display('Downvoted!');
     }
   }
 
@@ -204,7 +204,7 @@ export class PostCardComponent implements OnChanges {
       this.alertService.display('There was an error, please try again later!');
     } else {
       this.voted = true;
-      this.alertService.display('Voted!');
+      this.alertService.display('Upvoted!');
     }
   }
 

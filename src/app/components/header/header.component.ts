@@ -4,6 +4,7 @@ import {MdDialog} from "@angular/material";
 import {Author} from "../../services/steem/author.model";
 import {GoogleAnalyticsService} from "../../services/analytics/google-analytics.service";
 import {AuthService} from "../../services/auth/auth.service";
+import {ParametersService} from "../../services/parameters/parameters.service";
 
 @Component({
   selector: 'ps-header',
@@ -30,8 +31,9 @@ export class HeaderComponent {
    * @public
    * @param dialog
    * @param authService
+   * @param parametersService
    */
-  constructor(public dialog: MdDialog, private authService: AuthService) { }
+  constructor(public dialog: MdDialog, private authService: AuthService, private parametersService: ParametersService) { }
 
   /**
    * Performs auth action
@@ -60,10 +62,15 @@ export class HeaderComponent {
    * @public
    * @returns void
    */
-  public openDialog(): void {
+  public openSupportDialog(): void {
+    this.parametersService.set('dialog-title', 'Donors Wanted!');
+    this.parametersService.set('dialog-message', 'We need your support');
+    this.parametersService.set('dialog-show-cancel', false);
+
     let dialogRef = this.dialog.open(DialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log("done", result);
+      this.parametersService.reset();
     });
   }
 }
