@@ -21,7 +21,8 @@
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/steem/dist/steem.min.js"
+        "../node_modules/steem/dist/steem.min.js",
+        "../node_modules/showdown/dist/showdown.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

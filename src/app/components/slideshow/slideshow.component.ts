@@ -1,7 +1,5 @@
 import {Component, Input, ElementRef, OnChanges, SimpleChanges} from '@angular/core';
 
-declare const Hammer: any;
-
 @Component({
   selector: 'ps-slideshow',
   templateUrl: 'slideshow.component.html',
@@ -64,14 +62,17 @@ export class SlideshowComponent implements OnChanges {
   private loadContainers(): void {
     this.imageWrapper = this.elementRef.nativeElement.querySelector('.image-slideshow-container .image');
     this.imageContainer = this.imageWrapper.querySelector('.image-slideshow-container .image .content-image');
-    const mc = Hammer(this.imageWrapper);
-    mc.on("swipeleft swiperight", (evt) => {
-      if (evt.type === 'swipeleft') {
-        this.next();
-      } else if (evt.type === 'swiperight') {
-        this.previous();
-      }
-    });
+  }
+
+  /**
+   * Goes to page number provided
+   *
+   * @param number
+   * @returns void
+   */
+  public page(number: number): void {
+    this.index = number;
+    this.updateImage();
   }
 
   /**

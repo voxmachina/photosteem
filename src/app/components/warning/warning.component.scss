@@ -7,7 +7,28 @@ md-card {
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
   background: azure;
 
+  p {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 14px;
+
+    md-icon {
+      margin-right: 10px;
+    }
+  }
+
   @media only screen and (min-width : $screen-sm-min) {
     margin: 60px auto 10px auto;
+  }
+
+  .close {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  &.hide {
+    display: none;
   }
 }

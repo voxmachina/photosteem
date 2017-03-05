@@ -29,8 +29,9 @@
   </div>
 
   <md-card-content>
+    <p (click)="openDialog()" [innerHtml]="post.body"></p>
     <p>
-      <a (click)="openDialog()" *ngFor="let tag of post.tags">#{{tag}}</a>
+      <a (click)="openDialog()" *ngFor="let tag of post.tags">#{{tag}}&nbsp;</a>
     </p>
   </md-card-content>
 </md-card>

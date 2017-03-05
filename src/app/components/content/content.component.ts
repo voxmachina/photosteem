@@ -4,6 +4,7 @@ import {Post} from "../../services/steem/post.model";
 import {Author} from "../../services/steem/author.model";
 import {AlertService} from "../../services/alert/alert.service";
 import {AuthService} from "../../services/auth/auth.service";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'ps-content',
@@ -46,11 +47,13 @@ export class ContentComponent {
    * @param authService
    * @param steemService
    * @param alertService
+   * @param sanitizer
    */
   constructor(
     private authService: AuthService,
     private steemService: SteemService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private sanitizer: DomSanitizer
   ) {
     this.authService.authenticate((err, res) => this.onAuthenticationResponse(err, res));
   }
@@ -149,7 +152,7 @@ export class ContentComponent {
     let previousLength = this.posts ? this.posts.length : 0;
 
     let posts = res.splice(previousLength)
-      .map(Post.parsePost)
+      .map(post => Post.parsePost(post, this.sanitizer))
       .filter(post => post.imageUrls);
 
     this.updatePosts(posts);

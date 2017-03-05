@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef} from '@angular/core';
 
 declare const Hammer: any;
 
@@ -9,4 +9,19 @@ declare const Hammer: any;
 })
 export class WarningComponent {
 
+  /**
+   * @constructor
+   * @public
+   * @param elementRef
+   */
+  constructor(private elementRef: ElementRef) { }
+
+  /**
+   * Close this warning
+   *
+   * @returns void
+   */
+  close(): void {
+    this.elementRef.nativeElement.querySelector('md-card').classList.add('hide');
+  }
 }

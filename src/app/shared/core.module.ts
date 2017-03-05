@@ -24,13 +24,6 @@ import {GoogleAnalyticsService} from "../services/analytics/google-analytics.ser
 import {AlertService} from "../services/alert/alert.service";
 import {ContentComponent} from "../components/content/content.component";
 import {WarningComponent} from "../components/warning/warning.component";
-import {HammerGestureConfig, HAMMER_GESTURE_CONFIG} from "@angular/platform-browser";
-
-export class HammerConfig extends HammerGestureConfig  {
-  overrides = <any>{
-    'swipe': {velocity: 0.4, threshold: 20}
-  }
-}
 
 @NgModule({
   imports: [
@@ -56,11 +49,7 @@ export class HammerConfig extends HammerGestureConfig  {
     AuthService,
     ParametersService,
     GoogleAnalyticsService,
-    AlertService,
-    {
-      provide: HAMMER_GESTURE_CONFIG,
-      useClass: HammerConfig
-    }
+    AlertService
   ],
   entryComponents: [DialogComponent],
   exports: [

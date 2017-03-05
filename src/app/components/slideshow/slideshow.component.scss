@@ -50,17 +50,13 @@
 
   .pagination-left, .pagination-right {
     position: absolute;
-    display: none;
+    display: flex;
     height: 100%;
     width: 60px;
     justify-content: center;
     align-items: center;
     opacity: 0.5;
     cursor: pointer;
-
-    @media only screen and (min-width : $screen-sm-min) {
-      display: flex;
-    }
 
     md-icon {
       color: #fff;
@@ -88,13 +84,11 @@
     align-items: center;
     width: 100%;
     bottom: 40px;
+    overflow: hidden;
     position: absolute;
     margin:25px auto 0;
     padding:0;
-
-    @media only screen and (min-width : $screen-sm-min) {
-      display: none;
-    }
+    z-index: 1;
 
     li {
       list-style:none;
@@ -112,6 +106,7 @@
       -moz-border-radius: 10px;
       -webkit-border-radius: 10px;
       box-shadow: inset 1px 1px 1px rgba(0, 0 ,0, 0.4);
+      margin: 0 6px;
     }
 
     li a.active {

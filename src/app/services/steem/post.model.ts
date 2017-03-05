@@ -1,6 +1,9 @@
 import {Metadata} from "./metadata.model";
 import {Author} from "./author.model";
 import {Vote} from "./vote.model";
+import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
+
+declare const showdown: any;
 
 export class Post {
 
@@ -41,7 +44,7 @@ export class Post {
    *
    * @type string
    */
-  public body: string;
+  public body: SafeHtml;
 
   /**
    * An array of the post images
@@ -68,10 +71,12 @@ export class Post {
    *
    * @public
    * @param post
-   * @returns Post
+   * @param sanitizer
+   * @returns {Post}
    */
-  public static parsePost(post: Post): Post {
+  public static parsePost(post: Post, sanitizer: DomSanitizer): Post {
     let postMetadata: Metadata;
+    let converter = new showdown.Converter();
 
     try {
       postMetadata = JSON.parse(post.json_metadata);
@@ -81,7 +86,12 @@ export class Post {
 
     if (postMetadata && postMetadata.image && postMetadata.image.length && postMetadata.image.length > 0) {
       post.imageUrls = postMetadata.image;
-      post.body = post.body.replace(/<(?:.|\n)*?>/gm, '').substr(0, 50) + "...";
+      post.body = converter.makeHtml(post.body).substr(0, 100) + "...";
+      post.body = ('' + post.body).replace(/<br>/gi, "\n");
+      post.body = ('' + post.body).replace(/<p.*>/gi, "\n");
+      post.body = ('' + post.body).replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 (Link->$1) ");
+      post.body = ('' + post.body).replace(/<(?:.|\s)*?>/g, "");
+      post.body = sanitizer.bypassSecurityTrustHtml('' + post.body);
     }
 
     if (post.pending_payout_value) {

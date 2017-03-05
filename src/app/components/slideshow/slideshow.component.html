@@ -11,7 +11,7 @@
     <div class="image-gradient"></div>
 
     <ol class="circle-pagination" *ngIf="images.length > 1">
-      <li *ngFor="let image of images"><a [class.active]="img.src == image"></a></li>
+      <li *ngFor="let image of images; let i = index;" (click)="page(i)"><a [class.active]="img.src == image"></a></li>
     </ol>
 
   </div>
