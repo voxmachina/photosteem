@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {environment} from "../../../environments/environment";
 
 declare const ga:any;
 
@@ -14,7 +15,11 @@ export class GoogleAnalyticsService {
    * @param value
    */
   public static trackEvent(category: string, action: string, value: string = ''): void {
-    ga('send', 'event', category, action, value);
+    if (environment.production) {
+      ga('send', 'event', category, action, value);
+    } else {
+      console.info("tracking event: ", category, action, value);
+    }
   }
 
   /**
@@ -25,6 +30,10 @@ export class GoogleAnalyticsService {
    * @returns void
    */
   public static trackView(page: string): void {
-    ga('send', 'pageview', page);
+    if (environment.production) {
+      ga('send', 'pageview', page);
+    } else {
+      console.info("tracking view: ", page);
+    }
   }
 }

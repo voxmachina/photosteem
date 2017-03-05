@@ -74,6 +74,7 @@ export class SlideshowComponent implements OnChanges {
   public page(number: number): void {
     this.index = number;
     this.updateImage();
+    GoogleAnalyticsService.trackEvent('Slideshow', 'click', 'circle');
   }
 
   /**
