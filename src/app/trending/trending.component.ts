@@ -11,6 +11,7 @@ export class TrendingComponent extends ContentComponent implements OnInit {
    * Upon component initialization
    */
   ngOnInit() {
+    super.trackView('trending');
     super.getTrending();
   }
 }

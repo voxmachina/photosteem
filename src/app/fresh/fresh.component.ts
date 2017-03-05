@@ -11,6 +11,7 @@ export class FreshComponent extends ContentComponent implements OnInit {
    * Upon component initialization
    */
   ngOnInit() {
+    super.trackView('fresh');
     super.getNew();
   }
 }

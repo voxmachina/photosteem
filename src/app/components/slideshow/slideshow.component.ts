@@ -1,4 +1,5 @@
 import {Component, Input, ElementRef, OnChanges, SimpleChanges} from '@angular/core';
+import {GoogleAnalyticsService} from "../../services/analytics/google-analytics.service";
 
 @Component({
   selector: 'ps-slideshow',
@@ -88,6 +89,7 @@ export class SlideshowComponent implements OnChanges {
     }
 
     this.updateImage();
+    GoogleAnalyticsService.trackEvent('Slideshow', 'click', 'previous');
   }
 
   /**
@@ -104,6 +106,7 @@ export class SlideshowComponent implements OnChanges {
     }
 
     this.updateImage();
+    GoogleAnalyticsService.trackEvent('Slideshow', 'click', 'next');
   }
 
   /**
@@ -149,5 +152,6 @@ export class SlideshowComponent implements OnChanges {
     this.imageContainer.src = oldReference;
     this.imageWrapper.classList.remove("slide");
     this.imageContainer.classList.add('ng2-lazyloaded');
+    GoogleAnalyticsService.trackEvent('Slideshow', 'error', 'image_load');
   }
 }

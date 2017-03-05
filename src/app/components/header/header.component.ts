@@ -67,6 +67,8 @@ export class HeaderComponent {
     this.parametersService.set('dialog-message', 'We need your support');
     this.parametersService.set('dialog-show-cancel', false);
 
+    GoogleAnalyticsService.trackEvent('Menu', 'add', 'dialog');
+
     let dialogRef = this.dialog.open(DialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log("done", result);

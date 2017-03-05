@@ -5,6 +5,7 @@ import {Author} from "../../services/steem/author.model";
 import {AlertService} from "../../services/alert/alert.service";
 import {AuthService} from "../../services/auth/auth.service";
 import {DomSanitizer} from "@angular/platform-browser";
+import {GoogleAnalyticsService} from "../../services/analytics/google-analytics.service";
 
 @Component({
   selector: 'ps-content',
@@ -56,6 +57,16 @@ export class ContentComponent {
     private sanitizer: DomSanitizer
   ) {
     this.authService.authenticate((err, res) => this.onAuthenticationResponse(err, res));
+  }
+
+  /**
+   * Tracks a page view
+   *
+   * @param page
+   * @returns void
+   */
+  public trackView(page): void {
+    GoogleAnalyticsService.trackView(page);
   }
 
   /**

@@ -16,4 +16,15 @@ export class GoogleAnalyticsService {
   public static trackEvent(category: string, action: string, value: string = ''): void {
     ga('send', 'event', category, action, value);
   }
+
+  /**
+   * Tracks a view
+   *
+   * @public
+   * @param page
+   * @returns void
+   */
+  public static trackView(page: string): void {
+    ga('send', 'pageview', page);
+  }
 }

@@ -11,6 +11,7 @@ export class HomeComponent extends ContentComponent implements OnInit {
    * Upon component initialization
    */
   ngOnInit() {
+    super.trackView('home');
     this.getHot();
   }
 }

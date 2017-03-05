@@ -1,4 +1,5 @@
 import {Component, ElementRef} from '@angular/core';
+import {GoogleAnalyticsService} from "../../services/analytics/google-analytics.service";
 
 declare const Hammer: any;
 
@@ -15,6 +16,26 @@ export class WarningComponent {
    * @param elementRef
    */
   constructor(private elementRef: ElementRef) { }
+
+  /**
+   * Tracks a click for the email
+   *
+   * @public
+   * @returns void
+   */
+  public trackContactClick(): void {
+    GoogleAnalyticsService.trackEvent('Contact', 'click', 'support');
+  }
+
+  /**
+   * Tracks a click for the email
+   *
+   * @public
+   * @returns void
+   */
+  public trackAboutClick(): void {
+    GoogleAnalyticsService.trackEvent('About', 'click', 'support');
+  }
 
   /**
    * Close this warning

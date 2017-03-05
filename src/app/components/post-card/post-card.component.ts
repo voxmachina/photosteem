@@ -7,6 +7,7 @@ import {Author} from "../../services/steem/author.model";
 import {ParametersService} from "../../services/parameters/parameters.service";
 import {AuthService} from "../../services/auth/auth.service";
 import {AlertService} from "../../services/alert/alert.service";
+import {GoogleAnalyticsService} from "../../services/analytics/google-analytics.service";
 
 @Component({
   selector: 'ps-post-card',
@@ -116,6 +117,7 @@ export class PostCardComponent implements OnChanges {
     this.reblogging = true;
 
     if (!this.viewer) {
+      GoogleAnalyticsService.trackEvent('Reblog', 'click', 'anonymous');
       window.location.href = this.authService.getLoginUrl();
       return;
     }
@@ -139,9 +141,11 @@ export class PostCardComponent implements OnChanges {
     if (err) {
       this.reblogged = true;
       this.alertService.display('Already reblogged before!');
+      GoogleAnalyticsService.trackEvent('Reblog', 'response', 'doubled');
     } else {
       this.reblogged = true;
       this.alertService.display('Reblogged!');
+      GoogleAnalyticsService.trackEvent('Reblog', 'response', 'ok');
     }
   }
 
@@ -158,12 +162,14 @@ export class PostCardComponent implements OnChanges {
 
     if (!this.viewer) {
       window.location.href = this.authService.getLoginUrl();
+      GoogleAnalyticsService.trackEvent('Vote', 'click', 'anonymous');
       return;
     }
 
     if (!this.voted) {
       this.steemService.vote(this.viewer, author, permlink, this.voteMax, this.onVoteUpResponse.bind(this));
     } else {
+      GoogleAnalyticsService.trackEvent('Vote', 'downvote', 'open_confirmation');
       this.openVoteDownDialog(author, permlink);
     }
   }
@@ -182,9 +188,11 @@ export class PostCardComponent implements OnChanges {
     if (err) {
       console.warn(err);
       this.alertService.display('There was an error, please try again later');
+      GoogleAnalyticsService.trackEvent('Vote', 'error', 'downvote');
     } else {
       this.voted = false;
       this.alertService.display('Downvoted!');
+      GoogleAnalyticsService.trackEvent('Vote', 'downvote', 'success');
     }
   }
 
@@ -202,9 +210,11 @@ export class PostCardComponent implements OnChanges {
     if (err) {
       console.warn(err);
       this.alertService.display('There was an error, please try again later!');
+      GoogleAnalyticsService.trackEvent('Vote', 'error', 'upvote');
     } else {
       this.voted = true;
       this.alertService.display('Upvoted!');
+      GoogleAnalyticsService.trackEvent('Vote', 'upvote', 'success');
     }
   }
 
