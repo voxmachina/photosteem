@@ -6,9 +6,4 @@ describe('photos App', function() {
   beforeEach(() => {
     page = new PhotosPage();
   });
-
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
-  });
 });
