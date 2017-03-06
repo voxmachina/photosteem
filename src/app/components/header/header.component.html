@@ -1,0 +1,31 @@
+<md-toolbar color="primary">
+  <span class="logo">PhotoSteem</span>
+  <span class="spacer spacer-nav"></span>
+  <div class="nav">
+    <button routerLink="/home" routerLinkActive="active" md-button>
+      <span>HOT</span>
+    </button>
+    <button routerLink="/trending" routerLinkActive="active" md-button>
+      <span>TRENDING</span>
+    </button>
+    <button routerLink="/fresh" routerLinkActive="active" md-button>
+      <span>FRESH</span>
+    </button>
+    <button (click)="openSupportDialog()" md-button>
+      <md-icon class="example-icon">add</md-icon>
+    </button>
+  </div>
+  <span class="spacer"></span>
+  <a (click)="auth()" *ngIf="!user">
+    <md-icon class="icon user-icon">account_circle</md-icon>
+  </a>
+  <a *ngIf="user && user.avatar" md-card-avatar class="avatar" [mdMenuTriggerFor]="menu" (click)="trackProfileClick()">
+    <img [defaultImage]="'/assets/img-loader.gif'" [lazyLoad]="user.avatar" alt="">
+  </a>
+  <md-menu #menu="mdMenu">
+    <button md-menu-item (click)="auth()">
+      <span>Logout</span>
+    </button>
+  </md-menu>
+</md-toolbar>
+<ps-warning></ps-warning>

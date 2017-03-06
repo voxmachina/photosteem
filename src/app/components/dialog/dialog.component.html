@@ -1,0 +1,6 @@
+<h1 md-dialog-title *ngIf="title">{{title}}</h1>
+<div md-dialog-content *ngIf="message">{{message}}</div>
+<div md-dialog-actions>
+  <button *ngIf="showOk" md-button color="primary" (click)="dialogRef.close(true)">OK</button>
+  <button *ngIf="showCancel" md-button color="warn" (click)="dialogRef.close(false)">CANCEL</button>
+</div>

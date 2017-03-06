@@ -1,0 +1,37 @@
+<md-card *ngIf="post">
+  <md-card-header>
+    <div *ngIf="post.author && post.author.avatar" md-card-avatar class="avatar">
+      <img [lazyLoad]="post.author.avatar" alt="">
+    </div>
+    <md-card-title>{{post.title}}</md-card-title>
+    <md-card-subtitle *ngIf="post.author">{{post.author.name}}</md-card-subtitle>
+  </md-card-header>
+
+  <div class="content-image-container">
+
+    <md-chip color="primary">{{post.value}}$</md-chip>
+
+    <ps-slideshow [images]="post.imageUrls"></ps-slideshow>
+
+    <md-card-actions>
+      <a (click)="reblog(post.author, post.permlink)" class="repeat" md-mini-fab>
+        <md-icon *ngIf="!reblogging && !reblogged" class="icon">repeat</md-icon>
+        <md-icon *ngIf="!reblogging && reblogged" style="color:red;" class="icon">repeat_one</md-icon>
+        <md-spinner *ngIf="reblogging"></md-spinner>
+      </a>
+      <span class="spacer"></span>
+      <a (click)="vote(post.author, post.permlink)" class="love" md-mini-fab>
+        <md-icon *ngIf="!voting && !voted" class="icon">favorite_border</md-icon>
+        <md-icon *ngIf="!voting && voted" class="icon" style="color:red;">favorite</md-icon>
+        <md-spinner *ngIf="voting"></md-spinner>
+      </a>
+    </md-card-actions>
+  </div>
+
+  <md-card-content>
+    <p (click)="openDialog()" [innerHtml]="post.body"></p>
+    <p>
+      <a (click)="openDialog()" *ngFor="let tag of post.tags">#{{tag}}&nbsp;</a>
+    </p>
+  </md-card-content>
+</md-card>

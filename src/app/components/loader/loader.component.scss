@@ -1,0 +1,28 @@
+.small-loader {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+
+  md-spinner {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.big-loader {
+  position: fixed;
+  z-index: 999;
+  height: 65px;
+  width: 65px;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  md-spinner {
+    width: 65px;
+    height: 65px;
+  }
+}

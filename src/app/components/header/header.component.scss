@@ -1,0 +1,75 @@
+@import "../../../styles/variables";
+
+md-toolbar {
+  position: fixed;
+  top: 0;
+  min-height: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  z-index: 4;
+
+  button {
+    border-radius: 20px;
+    margin: 0 10px;
+
+    &.active {
+      background: #333;
+    }
+  }
+}
+
+.nav {
+  display: none;
+
+  @media only screen and (min-width : $screen-sm-min) {
+    display: flex;
+  }
+}
+
+.icon {
+  padding: 0 14px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+
+  &-nav {
+    display: none;
+
+    @media only screen and (min-width : $screen-sm-min) {
+      display: flex;
+    }
+  }
+}
+
+md-menu {
+  z-index: 2;
+}
+
+a {
+  cursor: pointer;
+}
+
+a md-icon {
+  padding: 0;
+  margin: 0;
+  color: #fff;
+}
+
+.avatar img {
+  width: 34px;
+  height: 34px;
+}
+
+.user-icon {
+  font-size: 34px;
+}
+
+.logo {
+  background-image: url("/assets/logo.png");
+  background-size: 29px 29px;
+  background-repeat: no-repeat;
+  background-position: center left;
+  padding-left: 40px;
+}

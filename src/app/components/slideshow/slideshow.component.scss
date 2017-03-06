@@ -1,0 +1,116 @@
+@import "../../../styles/variables";
+
+.image-slideshow-container {
+  display: flex;
+  width: 100%;
+  height: auto;
+  position: relative;
+
+  .image {
+    display: flex;
+    width: 100%;
+    opacity: 1;
+    transition: opacity 1s linear;
+
+    a {
+      width: 100%;
+    }
+
+    &.slide {
+      opacity: 0.5;
+    }
+  }
+
+  .content-image {
+    width: 100%;
+    margin: 0 auto;
+    height: 300px;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../../../assets/img-loader.gif');
+    transition: opacity 1s ease;
+    opacity: 0.5;
+  }
+
+  .content-image.ng2-lazyloaded {
+    background-image: none;
+    height: auto;
+    opacity: 1;
+  }
+
+  .image-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 36%, rgba(0, 128, 128, 0) 100%);
+  }
+
+  .pagination-left, .pagination-right {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+    cursor: pointer;
+
+    md-icon {
+      color: #fff;
+      font-size: 55px;
+      text-shadow: 0 0 1px #333;
+      display: flex;
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .pagination-left {
+    top: 0;
+    left: 0;
+  }
+
+  .pagination-right {
+    top: 0;
+    right: 0;
+  }
+
+  .circle-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    bottom: 40px;
+    overflow: hidden;
+    position: absolute;
+    margin:25px auto 0;
+    padding:0;
+    z-index: 1;
+
+    li {
+      list-style:none;
+      float:left;
+      margin:0 2px;
+    }
+
+    li a {
+      display:block;
+      width:10px;
+      height:10px;
+      text-indent:-10000px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      box-shadow: inset 1px 1px 1px rgba(0, 0 ,0, 0.4);
+      margin: 0 6px;
+    }
+
+    li a.active {
+      background: #fff;
+    }
+  }
+}

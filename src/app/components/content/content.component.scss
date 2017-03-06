@@ -1,0 +1,14 @@
+@import "../../../styles/variables";
+
+section {
+  width: 100%;
+  margin: 0 auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @media only screen and (min-width : $screen-sm-min) {
+    width: 650px;
+    overflow: visible;
+  }
+}

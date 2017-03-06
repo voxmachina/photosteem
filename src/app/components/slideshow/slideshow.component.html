@@ -1,0 +1,22 @@
+<div class="image-slideshow-container swiper-container" *ngIf="images">
+
+  <div class="image">
+
+    <a target="_blank" href="">
+      <img #img class="content-image"
+           border="0" md-card-image
+           [errorImage]="'/assets/error.png'"
+           [lazyLoad]="images[index]" [offset]="2400">
+    </a>
+    <div class="image-gradient"></div>
+
+    <ol class="circle-pagination" *ngIf="images.length > 1">
+      <li *ngFor="let image of images; let i = index;" (click)="page(i)"><a [class.active]="img.src == image"></a></li>
+    </ol>
+
+  </div>
+
+  <div *ngIf="images.length > 0 && index > 0" class="pagination-left" (click)="previous()"><md-icon class="icon">keyboard_arrow_left</md-icon></div>
+  <div *ngIf="images.length > 0 && index < images.length - 1" class="pagination-right" (click)="next()"><md-icon class="icon">keyboard_arrow_right</md-icon></div>
+
+</div>
