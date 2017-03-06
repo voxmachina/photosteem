@@ -18,11 +18,23 @@ export class Author {
 
   /**
    * This author avatar url
+   *
+   * @type string
    */
   public avatar: string;
 
+  /**
+   * This author vote permission
+   *
+   * @type boolean
+   */
   public can_vote: boolean;
 
+  /**
+   * This author voting power
+   *
+   * @type number
+   */
   public voting_power: number;
 
   /**
