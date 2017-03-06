@@ -6,17 +6,15 @@ The motivation for this project was at the same time a need to explore more abou
 
 This project would be a lot more painful if it wasn’t for the excellent already build tools that have supported me building this platform:
 
-[steem-js](https://github.com/steemit/steem-js)
-
-[steemconnect](https://github.com/adcpm/steemconnect)
+* [steem-js](https://github.com/steemit/steem-js)
+* [steemconnect](https://github.com/adcpm/steemconnect)
 
 
 
 # Dependencies
 
-[Node.js](https://nodejs.org)
-
-[Angular 2 CLI](https://github.com/angular/angular-cli)
+* [Node.js](https://nodejs.org)
+* [Angular 2 CLI](https://github.com/angular/angular-cli)
 
 # Installation
 
