@@ -1,8 +1,28 @@
 # PhotoSteem
 
-A Steem photo social sharing network built on top of Stem Blockchain
+A photo social sharing network built on top of Steem Blockchain
+
+The motivation for this project was at the same time a need to explore more about blockchain development, but also, being myself a  photographer on a hobby level,  the frustration of using services like instagram where every photo is a square image and there’s not really a focus on the photography community; besides of course that on Steem you can actually make money from your work and built yourself around a new and exciting marketplace.
+
+This project would be a lot more painful if it wasn’t for the excellent already build tools that have supported me building this platform:
+
+[steem-js](https://github.com/steemit/steem-js)
+[steemconnect](https://github.com/adcpm/steemconnect)
+
+
+
+# Dependencies
+
+[Node.js](https://nodejs.org)
+
+[Angular 2 CLI](https://github.com/angular/angular-cli)
+
+# Installation
+
+`npm install`
 
 ## Development server
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
